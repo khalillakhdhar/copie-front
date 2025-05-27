@@ -1,0 +1,197 @@
+<div class="container-fluid">
+ <app-page-title title="Gestion des Livreurs" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-sm-4">
+              <div class="search-box me-2 mb-2 d-inline-block">
+                <div class="position-relative">
+                  <input type="text" class="form-control" 
+                         [(ngModel)]="searchTerm" 
+                         (input)="filterSuppliers()"
+                         placeholder="Rechercher...">
+                  <i class="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="text-sm-end">
+                <button type="button" class="btn btn-success btn-rounded mb-2 me-2" 
+                        (click)="openAddModal()">
+                  <i class="mdi mdi-plus me-1"></i> Nouveau Livreur
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table align-middle table-nowrap dt-responsive nowrap w-100">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Téléphone</th>
+                  <th>Véhicule</th>
+                  <th>Statut</th>
+                  <th>Immatriculation</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let supplier of filteredSuppliers ">
+                  <td>{{supplier.id}}</td>
+                  <td>{{supplier.nom}} {{supplier.prenom}}</td>
+                  <td>{{supplier.email}}</td>
+                  <td>{{supplier.telephone}}</td>
+                  <td>{{supplier.vehicule}}</td>
+                  <td>
+                    <span class="badge" 
+                          [ngClass]="{
+                            'bg-success': supplier.actif, 
+                            'bg-danger': !supplier.actif
+                          }">
+                      {{supplier.actif ? 'Actif' : 'Inactif'}}
+                    </span>
+                    <span class="badge ms-1" 
+                          [ngClass]="{
+                            'bg-info': supplier.disponible, 
+                            'bg-warning': !supplier.disponible
+                          }">
+                      {{supplier.disponible ? 'Disponible' : 'Occupé'}}
+                    </span>
+                  </td>
+                  <td>{{supplier.immatriculation}}</td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn btn-light dropdown-toggle" type="button" 
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="mdi mdi-dots-horizontal"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a class="dropdown-item" href="javascript:void(0)" 
+                             (click)="openEditModal(supplier)">
+                            <i class="mdi mdi-pencil text-primary me-1"></i> Modifier
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="javascript:void(0)" 
+                             (click)="confirmDelete(supplier.id)">
+                            <i class="mdi mdi-delete text-danger me-1"></i> Supprimer
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        <!---->   
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Ajout -->
+<ng-template #addModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Ajouter un Livreur</h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addForm" (ngSubmit)="createSupplier()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nom</label>
+          <input type="text" class="form-control" formControlName="nom" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Prénom</label>
+          <input type="text" class="form-control" formControlName="prenom" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Téléphone</label>
+          <input type="text" class="form-control" formControlName="telephone" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Mot de passe</label>
+          <input type="password" class="form-control" formControlName="motDePasse" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Type de Véhicule</label>
+          <select class="form-select" formControlName="vehicule" required>
+            <option *ngFor="let vehicle of vehicleTypes" [value]="vehicle">
+              {{vehicle}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Immatriculation</label>
+        <input type="text" class="form-control" formControlName="immatriculation" required>
+      </div>
+
+      <div class="text-end">
+        <button type="button" class="btn btn-light me-2" (click)="modal.dismiss()">Annuler</button>
+        <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Modal Modification -->
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Modifier Livreur</h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" (ngSubmit)="updateSupplier()">
+      <div class="mb-3">
+        <label class="form-label">Type de Véhicule</label>
+        <select class="form-select" formControlName="vehicule">
+          <option *ngFor="let vehicle of vehicleTypes" [value]="vehicle">
+            {{vehicle}}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Immatriculation</label>
+        <input type="text" class="form-control" formControlName="immatriculation">
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" formControlName="actif">
+        <label class="form-check-label">Actif</label>
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" formControlName="disponible">
+        <label class="form-check-label">Disponible</label>
+      </div>
+
+      <div class="text-end">
+        <button type="button" class="btn btn-light me-2" (click)="modal.dismiss()">Annuler</button>
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

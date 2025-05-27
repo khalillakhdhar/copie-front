@@ -1,0 +1,5 @@
+.custom-bg {
+    background: linear-gradient(to bottom, #f0f0f0, #ffffff);  
+    background-size: cover;
+    background-position: center;
+  }

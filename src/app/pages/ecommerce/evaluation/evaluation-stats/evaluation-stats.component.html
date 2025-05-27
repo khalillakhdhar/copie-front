@@ -1,0 +1,18 @@
+<div *ngIf="!loading">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [xaxis]="chartOptions.xaxis"
+    [title]="chartOptions.title">
+  </apx-chart>
+
+  <apx-chart
+    [series]="pieChartOptions.series"
+    [chart]="pieChartOptions.chart"
+    [labels]="pieChartOptions.labels"
+    [title]="pieChartOptions.title">
+  </apx-chart>
+</div>
+<div *ngIf="loading">
+  Chargement des statistiques...
+</div>

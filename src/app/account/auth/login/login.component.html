@@ -1,0 +1,121 @@
+<div class="account-pages my-5 pt-sm-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card overflow-hidden">
+          <div class="bg-primary-subtle">
+            <div class="row">
+              <div class="col-7">
+                <div class="text-primary p-4">
+                  <h5 class="text-primary">Welcome Back !</h5>
+                  <p>Sign in to continue to Our Web Site!</p>
+                </div>
+              </div>
+              <div class="col-5 align-self-end">
+                <img src="assets/images/profile-img.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="card-body pt-0">
+            <div>
+              <a routerLink="/">
+                <div class="avatar-md profile-user-wid mb-4">
+                  <span class="avatar-title rounded-circle bg-light">
+                    <img src="assets/images/logo.svg" alt="" class="rounded-circle" height="34">
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="p-2">
+              <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <!-- Message d'erreur général -->
+                @if(error){
+                  <div class="alert alert-danger" role="alert" [dismissible]="false">
+                    <i class="mdi mdi-block-helper me-2"></i> 
+                    @if(error === 'Invalid email or password') {
+                      Email ou mot de passe incorrect
+                    } @else {
+                      {{ error }}
+                    }
+                  </div>
+                  }
+  
+                  <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email" 
+                           [ngClass]="{ 'is-invalid': (submitted && f.email.errors) || (error && error.includes('email')) }" />
+                    @if(submitted && f.email.errors){
+                    <div class="invalid-feedback">
+                      @if(f.email.errors.required){
+                      <div><i class="mdi mdi-alert-circle-outline me-1"></i> L'email est requis</div>
+                      }
+                      @if(f.email.errors.email){
+                      <div><i class="mdi mdi-alert-circle-outline me-1"></i> Format d'email invalide</div>
+                      }
+                    </div>
+                    }
+                  </div>
+                  
+                 
+                <div class="mb-3">
+                  <label for="password">Mot de passe</label>
+                  <div class="input-group auth-pass-inputgroup">
+                    <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" 
+                           formControlName="password" placeholder="Entrez votre mot de passe" 
+                           [ngClass]="{ 'is-invalid': (submitted && f.password.errors) || (error && error.includes('password')) }">
+                    
+                    <button class="btn btn-light ms-0" type="button" id="password-addon">
+                      <i class="mdi mdi-eye-outline" 
+                         [ngClass]="{'mdi-eye-off-outline': !fieldTextType, 'mdi-eye-outline': fieldTextType}" 
+                         (click)="toggleFieldTextType()"></i>
+                    </button>
+                    
+                    @if(submitted && f.password.errors){
+                    <div class="invalid-feedback">
+                      @if(f.password.errors.required){
+                      <span><i class="mdi mdi-alert-circle-outline me-1"></i> Le mot de passe est requis</span>
+                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="remember-check">
+                  <label class="form-check-label" for="remember-check">
+                    Souviens-toi de moi
+                  </label>
+                </div>
+
+                <div id="elmLoader" class="text-center d-none">
+                  <div class="spinner-border text-primary avatar-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+
+                <div class="mt-3 d-grid">
+                  <button class="btn btn-primary" type="submit">Se connecter</button>
+                </div>
+               
+                <div class="mt-4 text-center">
+                  <button (click)="ForgotPassword()" class="btn btn-link fw-medium text-primary p-0"> Mot de passe oublié?</button>
+                  
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+        <div class="mt-5 text-center">
+          <p class="d-inline">Vous n'avez pas de compte ?</p>
+          <button (click)="navigateToSignup()" class="btn btn-link fw-medium text-primary p-0"> Inscrivez-vous maintenant</button>
+          <p>© {{year}} Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- end container -->
+</div>
+<!-- end page -->

@@ -1,0 +1,162 @@
+<div class="container-fluid">
+    <div class="profile-tabs">
+      <div class="row">
+        <div class="col-xl-2">
+          <!-- Onglets verticaux -->
+          <tabset [vertical]="true" class="nav-pills flex-column">
+            <!-- Onglet Infos perso -->
+            <tab [active]="true">
+              <ng-template tabHeading>
+                <i class="bx bx-user d-block check-nav-icon mt-4 mb-2"></i>
+                <p class="fw-bold mb-4">Informations Personnelles</p>
+              </ng-template>
+            </tab>
+  
+            <!-- Onglet Adresse -->
+            <tab>
+              <ng-template tabHeading>
+                <i class="bx bx-home-alt d-block check-nav-icon mt-4 mb-2"></i>
+                <p class="fw-bold mb-4">Adresse</p>
+              </ng-template>
+            </tab>
+  
+            <!-- Onglet Profil -->
+            <tab>
+              <ng-template tabHeading>
+                <i class="bx bx-id-card d-block check-nav-icon mt-4 mb-2"></i>
+                <p class="fw-bold mb-4">Profil</p>
+              </ng-template>
+            </tab>
+          </tabset>
+        </div>
+  
+        <div class="col-xl-10">
+          <!-- Contenu des onglets -->
+          <div class="card">
+            <div class="card-body">
+              <!-- Onglet 1: Infos perso -->
+              <div *ngIf="activeTab === 0">
+                <h4 class="card-title">Informations Personnelles</h4>
+                <form [formGroup]="userForm">
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Nom</label>
+                    <div class="col-md-10">
+                      <input formControlName="nom" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Prénom</label>
+                    <div class="col-md-10">
+                      <input formControlName="prenom" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Email</label>
+                    <div class="col-md-10">
+                      <input formControlName="email" type="email" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Téléphone</label>
+                    <div class="col-md-10">
+                      <input formControlName="telephone" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Mot de passe</label>
+                    <div class="col-md-10">
+                      <input formControlName="motDePasse" type="password" class="form-control" placeholder="Laissez vide pour ne pas changer">
+                    </div>
+                  </div>
+                </form>
+              </div>
+  
+              <!-- Onglet 2: Adresse -->
+              <div *ngIf="activeTab === 1">
+                <h4 class="card-title">Adresse</h4>
+                <form [formGroup]="addressForm">
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Rue</label>
+                    <div class="col-md-10">
+                      <input formControlName="rue" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Ville</label>
+                    <div class="col-md-10">
+                      <input formControlName="ville" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Code Postal</label>
+                    <div class="col-md-10">
+                      <input formControlName="codePostale" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Province</label>
+                    <div class="col-md-10">
+                      <input formControlName="province" type="text" class="form-control">
+                    </div>
+                  </div>
+                </form>
+              </div>
+  
+              <!-- Onglet 3: Profil -->
+              <div *ngIf="activeTab === 2">
+                <h4 class="card-title">Profil</h4>
+                <form [formGroup]="profileForm">
+                  <div class="mb-3">
+  <label for="profileImage">Choisir une image de profil</label>
+  <input type="file" id="profileImage" class="form-control" (change)="onImageSelected($event)" accept="image/*">
+</div>
+
+<div *ngIf="imagePreview || profileImage" class="mb-3">
+  <label>Prévisualisation :</label><br>
+  <img 
+    [src]="imagePreview || 'http://localhost:8080/api/files/' + profileImage" 
+    alt="Image de profil" 
+    class="img-thumbnail" 
+    style="max-height: 200px;">
+</div> 
+                  
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Date de Naissance</label>
+                    <div class="col-md-10">
+                      <input formControlName="dateNaissance" type="date" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-2 col-form-label">Genre</label>
+                    <div class="col-md-10">
+                      <select formControlName="genre" class="form-select">
+                        <option value="Homme">Masculin</option>
+                        <option value="Femme">Féminin</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+  
+              <!-- Boutons de navigation -->
+              <div class="row mt-4">
+                <div class="col-sm-6">
+                <!-- <button *ngIf="activeTab > 0" (click)="previousTab()" class="btn btn-secondary">
+                    <i class="mdi mdi-arrow-left me-1"></i> Précédent
+                  </button>--> 
+                </div>
+                <div class="col-sm-6 text-end">
+                  <button *ngIf="activeTab < 2" (click)="nextTab()" class="btn btn-primary me-2"  >
+                    Suivant <i class="mdi mdi-arrow-right me-1"></i>
+                  </button>
+                  <button (click)="saveAll()" class="btn btn-success">
+                    <i class="mdi mdi-content-save me-1"></i> Enregistrer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

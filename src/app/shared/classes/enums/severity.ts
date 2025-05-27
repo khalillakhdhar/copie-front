@@ -1,0 +1,1 @@
+export type Severity = 'LEGERE' | 'MOYENNE' | 'GRAVE';

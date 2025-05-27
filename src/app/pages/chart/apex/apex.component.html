@@ -1,0 +1,27 @@
+<div class="container-fluid mt-3">
+    <!-- Carte Leaflet -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5>Cartographie des incidents</h5>
+        </div>
+        <div class="card-body">
+            <div id="map" style="height: 500px; border-radius: 5px;"></div>
+        </div>
+    </div>
+
+    <!-- Graphique Activité -->
+    <div class="card">
+        <div class="card-header bg-success text-white d-flex justify-content-between">
+            <h5>Activité globale</h5>
+            <select class="form-select w-auto" (change)="loadActivity()">
+                <option value="day">Aujourd'hui</option>
+                <option value="month" selected>Ce mois</option>
+                <option value="year">Cette année</option>
+            </select>
+        </div>
+        <div class="card-body">
+            <apx-chart [series]="activityChart.series" [chart]="activityChart.chart" 
+                      [labels]="activityChart.labels" [colors]="activityChart.colors"></apx-chart>
+        </div>
+    </div>
+</div>

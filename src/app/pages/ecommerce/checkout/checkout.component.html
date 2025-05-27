@@ -1,0 +1,170 @@
+<div class="container-fluid">
+ <!--<app-page-title title="Commande" [breadcrumbItems]="breadCrumbItems"></app-page-title>--> 
+  <div class="checkout-tabs">
+    <div class="row">
+      <div class="col-xl-12">
+        <tabset [vertical]="true" class="nav-pills flex-column ecommerce-checkout-tab">
+          <tab>
+            <ng-template tabHeading>
+              <i class="bx bxs-truck d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">Informations de livraison</p>
+            </ng-template>
+
+            <div class="card">
+              <div class="card-body">
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-shipping" role="tabpanel" aria-labelledby="v-pills-shipping-tab">
+                    <div>
+                      <h4 class="card-title">Informations de livraison</h4>
+                      <p class="card-title-desc">Remplissez toutes les informations ci-dessous</p>
+                      <form [formGroup]="livraisonForm">
+                        <div class="row mb-4">
+                          <label class="col-md-2 col-form-label">Nom</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" formControlName="nom" placeholder="Entrez votre nom">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                          <label class="col-md-2 col-form-label">Adresse Email</label>
+                          <div class="col-md-10">
+                            <input type="email" class="form-control" formControlName="email" placeholder="Entrez votre email">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                          <label class="col-md-2 col-form-label">Téléphone</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" formControlName="telephone" placeholder="Entrez votre numéro de téléphone">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                          <label class="col-md-2 col-form-label">Adresse</label>
+                          <div class="col-md-10">
+                            <textarea class="form-control" formControlName="adresse" rows="3" placeholder="Entrez votre adresse complète"></textarea>
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                          <label class="col-md-2 col-form-label">Pays</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" formControlName="pays" placeholder="Entrez votre pays">
+                          </div>
+                        </div>
+                        
+                        <div class="row mb-0">
+                          <label class="col-md-2 col-form-label">Notes de commande</label>
+                          <div class="col-md-10">
+                            <textarea class="form-control" formControlName="notesCommande" rows="3" placeholder="Ajoutez des notes..."></textarea>
+                          </div>
+                        </div>
+                      </form>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4">
+                <a routerLink="/ecommerce/cart" class="btn text-muted d-none d-sm-inline-block btn-link">
+                  <i class="mdi mdi-arrow-left me-1"></i> Retour au panier
+                </a>
+              </div>
+              <div class="col-sm-6">
+                <div class="text-sm-end">
+                  <a routerLink="/ecommerce/checkout" class="btn btn-success">
+                    <i class="mdi mdi-truck-fast me-1"></i> Passer à la confirmation
+                  </a>
+                </div>
+              </div>
+            </div>
+          </tab>
+
+          <tab>
+            <ng-template tabHeading>
+              <i class="bx bx-badge-check d-block check-nav-icon mt-4 mb-2"></i>
+              <p class="fw-bold mb-4">Confirmation</p>
+            </ng-template>
+            <div class="card">
+              <div class="card-body">
+                <div class="card shadow-none border mb-0">
+                  <div class="card-body">
+                    <h4 class="card-title mb-4">Résumé de la commande</h4>
+
+                    <div class="table-responsive">
+                      <table class="table align-middle mb-0 table-nowrap">
+                        <thead class="table-light">
+                          <tr>
+                            <th scope="col">Produit</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Prix</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                          <!-- Exemple de produit dynamique -->
+                          <tr *ngFor="let product of cartService.getCurrentCart()">
+                            <th scope="row">
+                              <img [src]="product.image" alt="product-img" title="product-img" class="avatar-md">
+                            
+                            </th>
+                            <td>
+                              <h5 class="font-size-14 text-truncate">{{product.name}}</h5>
+                              <p class="text-muted mb-0">{{product.price}} TND × {{product.qty}}</p>
+                            </td>
+                            <td>{{product.total}} TND</td>
+                          </tr>
+                          
+                         
+                          <tr>
+                            <td colspan="3">
+                              <div class="bg-primary-subtle p-3 rounded">
+                                <h5 class="font-size-14 text-primary mb-0">
+                                  <i class="fas fa-shipping-fast me-2"></i>
+                                  Livraison
+                                  <span class="float-end">À domicile</span>
+                                </h5>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2">
+                              <h6 class="m-0">Total:</h6>
+                            </td>
+                            <td>
+                              {{getGrandTotal()}} TND
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-md-6">
+                        <button class="btn btn-outline-secondary btn-sm" (click)="goBack()">
+                          <i class="mdi mdi-arrow-left me-1"></i> Modifier la commande
+                        </button>
+                      </div>
+                      <div class="col-md-6 text-md-end mt-2 mt-md-0">
+                        <button class="btn btn-outline-danger btn-sm me-2" (click)="cancelOrder()">
+                          <i class="mdi mdi-close-circle-outline me-1"></i> Annuler
+                        </button>
+                        <button class="btn btn-success btn-sm" (click)="confirmOrder()">
+                          <i class="mdi mdi-check-circle-outline me-1"></i> Confirmer
+                        </button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

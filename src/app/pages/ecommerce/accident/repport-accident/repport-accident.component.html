@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <h3>Signaler un accident</h3>
+
+  <form [formGroup]="accidentForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="dateAccident" class="form-label">Date et heure de l'accident</label>
+      <input type="datetime-local" id="dateAccident" formControlName="dateAccident" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label for="severity" class="form-label">Gravité</label>
+      <select id="severity" formControlName="severity" class="form-select">
+        <option value="" disabled>Sélectionnez la gravité</option>
+        <option *ngFor="let sev of severityOptions" [value]="sev">{{ sev }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="latitude" class="form-label">Latitude</label>
+      <input type="number" step="any" id="latitude" formControlName="latitude" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label for="longitude" class="form-label">Longitude</label>
+      <input type="number" step="any" id="longitude" formControlName="longitude" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Signaler</button>
+  </form>
+
+  <div *ngIf="messageSuccess" class="alert alert-success mt-3">{{ messageSuccess }}</div>
+  <div *ngIf="messageError" class="alert alert-danger mt-3">{{ messageError }}</div>
+</div>

@@ -1,0 +1,75 @@
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.reviews-section {
+  margin-top: 30px;
+}
+
+.add-review-form, .thank-you-message, .login-message {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.add-review-form h3, .reviews-list h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+.review-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-rating {
+  color: #ff9800;
+}
+
+.review-date {
+  color: #888;
+  font-size: 0.8em;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+}
+
+.thank-you-message, .login-message {
+  text-align: center;
+}
+
+.thank-you-message mat-icon {
+  color: #4caf50;
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+}
+
+.login-message mat-icon {
+  color: #2196f3;
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+}

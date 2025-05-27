@@ -1,0 +1,133 @@
+<div class="account-pages my-5 pt-sm-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card overflow-hidden">
+          <div class="bg-primary-subtle">
+            <div class="row">
+              <div class="col-7">
+                <div class="text-primary p-4">
+                  <h5 class="text-primary">Inscription gratuite</h5>
+                </div>
+              </div>
+              <div class="col-5 align-self-end">
+                <img src="assets/images/profile-img.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body pt-0">
+            <div>
+              <a routerLink="/">
+                <div class="avatar-md profile-user-wid mb-4">
+                  <span class="avatar-title rounded-circle bg-light">
+                    <img src="assets/images/logo.svg" alt="" class="rounded-circle" height="34">
+                  </span>
+                </div>
+              </a>
+            </div>
+
+            <div class="p-2">
+              <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
+                <!-- Nom -->
+                <div class="mb-3">
+                  <label for="nom" class="form-label">Nom</label>
+                  <input type="text" formControlName="nom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }" />
+                  <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">Le nom est requis.</div>
+                </div>
+
+                <!-- Prénom -->
+                <div class="mb-3">
+                  <label for="prenom" class="form-label">Prénom</label>
+                  <input type="text" formControlName="prenom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }" />
+                  <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">Le prénom est requis.</div>
+                </div>
+
+                <!-- Téléphone -->
+                <div class="mb-3">
+                  <label for="telephone" class="form-label">Téléphone</label>
+                  <input type="tel" formControlName="telephone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" />
+                  <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">Numéro de téléphone invalide.</div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">Email invalide.</div>
+                </div>
+
+                <!-- Mot de passe -->
+                <div class="mb-3">
+                  <label for="motDePasse" class="form-label">Mot de passe</label>
+                  <input type="password" formControlName="motDePasse" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.motDePasse.errors }" />
+                  <div *ngIf="submitted && f.motDePasse.errors" class="invalid-feedback">Le mot de passe est requis.</div>
+                </div>
+
+                <!-- Rôle -->
+                <div class="mb-3">
+                  <label for="role" class="form-label">Rôle</label>
+                  <select formControlName="role" class="form-select" [ngClass]="{ 'is-invalid': submitted && f.role.errors }" (change)="selectedRole = $event.target.value">
+                    <option value="" disabled selected>Sélectionnez un rôle</option>
+                    <option value="Client">Client</option>
+                    <option value="Livreur">Livreur</option>
+                  </select>
+                  <div *ngIf="submitted && f.role.errors" class="invalid-feedback">Le rôle est requis.</div>
+                </div>
+
+                <!-- Champs spécifiques au livreur -->
+                <div *ngIf="selectedRole === 'Livreur'">
+                  <!-- Véhicule -->
+                  <div class="mb-3">
+                    <label for="vehicule" class="form-label">Type de véhicule</label>
+                    <select class="form-select" formControlName="vehicule" required>
+                      <option *ngFor="let vehicle of vehicleTypes" [value]="vehicle">{{vehicle}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.vehicule.errors" class="invalid-feedback">Le type de véhicule est requis.</div>
+                  </div>
+
+                  <!-- Immatriculation -->
+                  <div class="mb-3">
+                    <label for="immatriculation" class="form-label">Immatriculation</label>
+                    <input type="text" formControlName="immatriculation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.immatriculation.errors }" />
+                    <div *ngIf="submitted && f.immatriculation.errors" class="invalid-feedback">
+                      <div *ngIf="f.immatriculation.errors.required">L'immatriculation est requise.</div>
+                      <div *ngIf="f.immatriculation.errors.pattern">Format invalide (ex: AB-123-CD).</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bouton -->
+                <div class="mt-4 d-grid">
+                  <button class="btn btn-primary" type="submit">Créer un compte</button>
+                </div>
+
+                <div class="mt-4 text-center">
+                  <h5 class="font-size-14 mb-3">Connectez-vous avec</h5>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="#" class="social-list-item bg-primary text-white border-primary"><i class="mdi mdi-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="social-list-item bg-info text-white border-info"><i class="mdi mdi-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="social-list-item bg-danger text-white border-danger"><i class="mdi mdi-google"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lien vers la page de connexion -->
+        <div class="mt-5 text-center">
+          <p>Vous avez déjà un compte ?
+            <button (click)="navigateToLogin()" class="btn btn-link fw-medium text-primary p-0">Se connecter</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

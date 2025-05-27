@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Mes Livraisons en Attente</h2>
+
+  <div *ngIf="livraisons.length === 0" class="alert alert-info">
+    Aucune livraison en attente.
+  </div>
+
+  <div *ngFor="let livraison of livraisons" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Livraison #{{ livraison.id }}</h5>
+      <p class="card-text">
+        <strong>Commande ID :</strong> {{ livraison.commande?.id }}<br />
+        <strong>Date Livraison :</strong> {{ livraison.dateLivraisonPrevue}}<br />
+        <strong>Adresse Livraison :</strong> {{ livraison.adresseLivraison}}<br />
+        <strong>Client :</strong> {{ livraison.commande?.utilisateur?.prenom }} {{ livraison.commande?.utilisateur?.nom }}
+      </p>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button class="btn btn-success" (click)="traiterLivraison(livraison.id, true)">Accepter</button>
+        <button class="btn btn-danger" (click)="traiterLivraison(livraison.id, false)">Refuser</button>
+      </div>
+    </div>
+  </div>
+</div>

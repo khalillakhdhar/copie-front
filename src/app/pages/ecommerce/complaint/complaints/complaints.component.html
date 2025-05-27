@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>Formulaire de Réclamation</h2>
+  
+  <form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()" class="reclamation-form">
+    <!-- Section Détails Réclamation -->
+    <fieldset>
+      <legend>Détails de la Réclamation</legend>
+      <div class="form-group">
+        <label>Date de Réclamation</label>
+        <input type="date" formControlName="dateReclamation" [value]="reclamationForm.get('dateReclamation')?.value | date:'yyyy-MM-dd'">
+      </div>
+      
+      <div class="form-group">
+        <label>Type de Réclamation</label>
+        <select formControlName="typeReclamation">
+          <option value="">Sélectionnez un type</option>
+          <option *ngFor="let type of typesReclamation" [value]="type">{{type}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Titre</label>
+        <input type="text" formControlName="titre">
+        <small *ngIf="reclamationForm.get('titre')?.errors?.['maxlength']">
+          Maximum 100 caractères
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Sujet</label>
+        <input type="text" formControlName="sujet">
+      </div>
+
+      <div class="form-group">
+        <label>Description détaillée</label>
+        <textarea formControlName="description" rows="4"></textarea>
+        <small>Caractères restants: {{1000 - (reclamationForm.get('description')?.value?.length || 0)}}</small>
+      </div>
+
+      <div class="form-group">
+        <label>Résultat souhaité</label>
+        <textarea formControlName="resultatSouhaite" rows="3"></textarea>
+      </div>
+      <div class="form-group checkbox">
+        <input type="checkbox" formControlName="consentement" id="consentement">
+        <label for="consentement">Je certifie que les informations fournies sont exactes*</label>
+      </div>
+    </fieldset>
+    <div class="form-actions">
+      <button type="button" >Annuler</button>
+      <button type="submit"   [disabled]="reclamationForm.invalid">Envoyer</button>
+    </div>
+  </form>
+</div>

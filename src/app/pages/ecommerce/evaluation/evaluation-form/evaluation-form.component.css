@@ -1,0 +1,44 @@
+.star-rating {
+  font-size: 2rem;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.star-rating .fa-star {
+  color: gold;
+}
+
+.star-rating .fa-star-o:hover,
+.star-rating .fa-star:hover {
+  color: orange;
+}
+.evaluation-card {
+  max-width: 500px;
+  margin: 30px auto;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.evaluation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.15);
+}
+
+.star-rating i {
+  transition: color 0.2s;
+}
+.btn-eval {
+  min-width: 180px;
+  padding: 10px 24px;
+  font-weight: 500;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-eval:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.3);
+}

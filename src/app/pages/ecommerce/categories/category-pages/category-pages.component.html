@@ -1,0 +1,110 @@
+<div class="container-fluid">
+  <app-page-title title="Catégories" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-sm-12 text-sm-end">
+              <button type="button" class="btn btn-success btn-rounded mb-2 me-2" (click)="openModal(addEditModal)">
+                <i class="mdi mdi-plus me-1"></i> Nouvelle Catégorie
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table align-middle table-nowrap dt-responsive nowrap w-100" id="categoryList-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nom</th>
+                  <th>Description</th>
+                  <th>Date d'ajout</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let category of categories; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ category.nomCategorie }}</td>
+                  <td>{{ category.description }}</td>
+                  <td>{{ category.createdAt | date: 'dd/MM/yyyy' }}</td>
+                 <!-- Dans votre tableau -->
+<td>
+  <div class="btn-group">
+    <button class="btn btn-sm btn-outline-primary" (click)="editCategory(category, addEditModal)">
+      <i class="fas fa-edit"></i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger" (click)="deleteCategory(category.id)">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+  </div>
+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+         <!-- Pagination -->
+<ul class="pagination pagination-rounded justify-content-end mb-2">
+  <li class="page-item" [class.disabled]="page === 1">
+    <a class="page-link" (click)="pageChanged(page - 1)">-</a>
+  </li>
+
+  <!-- Affichage dynamique des pages -->
+  <li *ngFor="let i of [].constructor(totalPages); let index = index" class="page-item" [class.active]="page === index + 1">
+    <a class="page-link" (click)="pageChanged(index + 1)">{{ index + 1 }}</a>
+  </li>
+
+  <li class="page-item" [class.disabled]="page === totalPages">
+    <a class="page-link" (click)="pageChanged(page + 1)">+</a>
+  </li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Ajouter/Modifier -->
+  <ng-template #addEditModal>
+    <div class="modal-header">
+      <h5 class="modal-title">{{ isEditMode ? 'Modifier Catégorie' : 'Ajouter Catégorie' }}</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="categorieForm" (ngSubmit)="saveCategory()">
+        <input type="hidden" formControlName="id">
+        <div class="mb-3">
+          <label class="form-label">Nom Catégorie</label>
+          <input type="text" class="form-control" formControlName="nomCategorie" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <input type="text" class="form-control" formControlName="description" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Annuler</button>
+          <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <!-- Modal de confirmation suppression -->
+  <ng-template #deleteModal>
+    <div class="modal-header">
+      <h5 class="modal-title">Confirmer la suppression</h5>
+      <button type="button" class="btn-close" (click)="modalRef?.hide()"></button>
+    </div>
+    <div class="modal-body">
+      Êtes-vous sûr de vouloir supprimer cette catégorie ?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Annuler</button>
+      <button type="button" class="btn btn-danger" (click)="deleteCategory()">Supprimer</button>
+    </div>
+  </ng-template>
+</div>

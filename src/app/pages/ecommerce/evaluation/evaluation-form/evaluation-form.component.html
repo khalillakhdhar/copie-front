@@ -1,0 +1,49 @@
+<div class="card evaluation-card shadow-sm">
+  <div class="card-body">
+    <h3 class="card-title text-center mb-4">Évaluez notre service global</h3>
+
+    <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group text-center">
+        <label class="mb-2">Note</label>
+        <div class="star-rating">
+          <ng-container *ngFor="let star of [1,2,3,4,5]">
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-star text-warning': f.note.value >= star,
+                'fa-star-o text-secondary': f.note.value < star
+              }"
+              (click)="f.note.setValue(star)"
+              style="font-size: 1.8rem; cursor: pointer; margin: 0 4px;"
+            ></i>
+          </ng-container>
+        </div>
+        <div *ngIf="submitted && f.note.errors" class="text-danger mt-2">
+          <small *ngIf="f.note.errors['required']">La note est obligatoire.</small>
+          <small *ngIf="f.note.errors['min'] || f.note.errors['max']">La note doit être entre 1 et 5.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="commentaire">Commentaire (optionnel)</label>
+        <textarea
+          id="commentaire"
+          formControlName="commentaire"
+          class="form-control"
+          rows="3"
+        ></textarea>
+      </div>
+<div class="text-center">
+  <button type="submit" class="btn btn-primary btn-eval mt-3">
+    <i class="fa fa-star me-2"></i>
+    Envoyer l’évaluation
+  </button>
+</div>
+
+
+
+      <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+    </form>
+  </div>
+</div>

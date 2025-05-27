@@ -1,0 +1,107 @@
+<div class="profile-container">
+ <!-- Modifiez la partie profile-header comme ceci -->
+<div class="profile-header">
+  <div class="cover-photo"></div>
+  <div class="profile-photo" *ngIf="user.profile?.photoUrl">
+    <img [src]="'http://localhost:8080/api/files/' + user.profile.photoUrl" 
+         alt="Photo de profil" 
+         class="profile-img"
+         onerror="this.src='assets/images/default-profile.png'">
+    <div class="online-status"></div>
+  </div>
+  <h1 class="profile-name">{{ user.nom }} {{ user.prenom }}</h1>
+</div>
+
+  <!-- Cartes d'information -->
+  <div class="profile-cards">
+    <!-- Carte Infos Perso -->
+    <div class="info-card">
+      <div class="card-header">
+        <i class="fas fa-user-circle card-icon"></i>
+        <h2>Informations Personnelles</h2>
+      </div>
+      <div class="card-body">
+        <div class="info-item">
+          <i class="fas fa-envelope icon"></i>
+          <span class="label">Email:</span>
+          <span class="value">{{ user.email }}</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone icon"></i>
+          <span class="label">Téléphone:</span>
+          <span class="value">{{ user.telephone || 'Non renseigné' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte Adresse -->
+    <div class="info-card" *ngIf="user.adresse">
+      <div class="card-header">
+        <i class="fas fa-map-marker-alt card-icon"></i>
+        <h2>Adresse</h2>
+      </div>
+      <div class="card-body">
+        <div class="info-item">
+          <i class="fas fa-road icon"></i>
+          <span class="value">{{ user.adresse.rue }}</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-city icon"></i>
+          <span class="value">{{ user.adresse.ville }}, {{ user.adresse.codePostale }}</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-map icon"></i>
+          <span class="value">{{ user.adresse.province }}</span>
+        </div>
+        <div class="map-preview">
+          <!-- Intégration Google Maps ou autre -->
+          <iframe 
+            width="100%" 
+            height="150" 
+            frameborder="0" 
+            scrolling="no" 
+            marginheight="0" 
+            marginwidth="0" 
+            [src]="'https://maps.google.com/maps?q='+user.adresse.rue+','+user.adresse.ville+'&output=embed'">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte Profil -->
+    <div class="info-card" *ngIf="user.profile">
+      <div class="card-header">
+        <i class="fas fa-id-card card-icon"></i>
+        <h2>Profil</h2>
+      </div>
+      <div class="card-body">
+        <div class="info-item">
+          <i class="fas fa-birthday-cake icon"></i>
+          <span class="label">Date de naissance:</span>
+          <span class="value">{{ user.profile.dateNaissance | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-venus-mars icon"></i>
+          <span class="label">Genre:</span>
+          <span class="value">{{ user.profile.genre === 'M' ? 'Masculin' : 'Féminin' }}</span>
+        </div>
+        <div class="badges">
+          <span class="badge member-since">Membre depuis {{ user.createdAt | date:'yyyy' }}</span>
+          <span class="badge verified" *ngIf="user.verified">
+            <i class="fas fa-check-circle"></i> Compte vérifié
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Boutons d'action -->
+  <div class="action-buttons">
+   
+      <div class="action-buttons">
+    <button class="btn-edit" routerLink="/profil">
+      <i class="fas fa-edit"></i>Compléter mon profil 😃
+    </button>
+    
+  </div>
+</div>

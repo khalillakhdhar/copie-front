@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <app-page-title title="Clients" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+   <div class="row mb-3">
+    <div class="col-md-6">
+      <form class="d-flex align-items-center">
+        <div class="search-box w-100">
+          <div class="position-relative">
+            <input type="text" class="form-control border-0" placeholder="Rechercher..." (input)="searchCustomers($event)">
+            <i class="bx bx-search-alt search-icon"></i>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table align-middle table-nowrap dt-responsive nowrap w-100" id="clientList-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nom</th>
+                  <th>Prénom</th>
+                  <th>Email</th>
+                  <th>Téléphone</th>
+                  <th>Adresse</th>
+                  <th>Date d'inscription</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let client of clients; let i = index">
+                  <td>{{ i +1 }}</td>
+                  <td>{{ client.nom }}</td>
+                  <td>{{ client.prenom }}</td>
+                  <td>{{ client.email }}</td>
+                  <td>{{ client.telephone }}</td>
+                  <td>{{ client.adresse?.rue }}, {{ client.adresse?.ville }}</td>
+                  <td>{{ client.createdAt | date: 'dd/MM/yyyy' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteClient(client.id)">
+                      <i class="fas fa-trash-alt"></i> Supprimer
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <ul class="pagination pagination-rounded justify-content-end mb-2">
+            <li class="page-item" [class.disabled]="page === 1">
+              <a class="page-link" (click)="pageChanged(page - 1)">-</a>
+            </li>
+  
+            <!-- Affichage dynamique des pages -->
+            <li *ngFor="let i of [].constructor(totalPages); let index = index" class="page-item" [class.active]="page === index + 1">
+              <a class="page-link" (click)="pageChanged(index + 1)">{{ index + 1 }}</a>
+            </li>
+  
+            <li class="page-item" [class.disabled]="page === totalPages">
+              <a class="page-link" (click)="pageChanged(page + 1)">+</a>
+            </li>
+          </ul>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmation suppression seulement -->
+  <ng-template #deleteModal>
+    <div class="modal-header">
+      <h5 class="modal-title">Confirmer la suppression</h5>
+      <button type="button" class="btn-close" (click)="modalRef?.hide()"></button>
+    </div>
+    <div class="modal-body">
+      Êtes-vous sûr de vouloir supprimer ce client ?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modalRef?.hide()">Annuler</button>
+      <button type="button" class="btn btn-danger" (click)="confirmDelete()">Supprimer</button>
+    </div>
+  </ng-template>
+</div>

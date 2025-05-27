@@ -1,0 +1,34 @@
+<!-- stats.component.html -->
+<div class="row">
+  <!-- Graphique nouveaux utilisateurs -->
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5>Nouveaux utilisateurs (par mois)</h5>
+        <div id="new-users-chart">
+          <apx-chart 
+            [series]="newUsersChart.series" 
+            [chart]="newUsersChart.chart" 
+            [xaxis]="newUsersChart.xaxis">
+          </apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Graphique produits populaires -->
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5>Top produits</h5>
+        <div id="top-products-chart">
+          <apx-chart 
+            [series]="topProductsChart.series" 
+            [chart]="topProductsChart.chart" 
+            [labels]="topProductsChart.labels">
+          </apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

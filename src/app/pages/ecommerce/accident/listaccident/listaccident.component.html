@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <app-page-title title="Gestion des Accidents" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-sm-4">
+              <div class="search-box me-2 mb-2 d-inline-block">
+                <div class="position-relative">
+                  <input type="text" class="form-control"
+                         [(ngModel)]="searchTerm"
+                         (input)="filterAccidents()"
+                         placeholder="Rechercher...">
+                  <i class="bx bx-search-alt search-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="text-sm-end">
+                <button type="button" class="btn btn-info btn-rounded mb-2 me-2"
+                        (click)="goToAccidentMap()">
+                  <i class="mdi mdi-map-marker me-1"></i> Voir Carte
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table align-middle table-nowrap dt-responsive nowrap w-100">
+              <thead class="table-light">
+                <tr>
+                  <th>Nom du livreur</th>
+                  <th>Date de l'accident</th>
+                  <th>Gravité</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let accident of filteredAccidents">
+                  <td>{{ accident.livreurName }}</td>
+                  <td>{{ accident.dateAccident | date:'short' }}</td>
+                  <td>
+                    <span [ngClass]="getSeverityClass(accident.severity)">
+                      {{ accident.severity }}
+                    </span>
+                  </td>
+                  <td>{{ accident.latitude }}</td>
+                  <td>{{ accident.longitude }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

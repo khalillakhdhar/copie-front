@@ -1,0 +1,16 @@
+<div class="map-container">
+  <google-map
+    height="500px"
+    width="100%"
+    [center]="currentPosition"
+    [zoom]="zoom">
+    
+    <map-marker
+      *ngIf="markerPosition"
+      [position]="markerPosition"
+      [label]="'Moi'"
+      [title]="'Ma position actuelle'">
+    </map-marker>
+
+  </google-map>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Liste des commandes</h2>
+  <!-- Champ de recherche -->
+ 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Produits</th>
+        <th>Montant Total</th>
+        <th>Statut</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let commande of commandes">
+        <td>{{ commande.id }}</td>
+        <td>{{ commande.createdAt | date }}</td>
+        <td>{{ commande.produits.length }} produits</td>
+        <td>{{ getTotalAmount(commande) }} TND</td>
+        <td>{{ commande.etatCommande }}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 0">
+        <a class="page-link" (click)="changePage(currentPage - 1)" href="#">Précédent</a>
+      </li>
+      <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index">
+        <a class="page-link" (click)="changePage(i)" href="#">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+        <a class="page-link" (click)="changePage(currentPage + 1)" href="#">Suivant</a>
+      </li>
+    </ul>
+  </nav>
+</div>

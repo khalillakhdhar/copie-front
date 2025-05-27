@@ -1,0 +1,33 @@
+.product-list li a {
+    display: block;
+    padding: 5px 0;
+    color: #495057;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .product-list li a:hover,
+  .product-list li a.active {
+    color: #0d6efd;
+    transform: translateX(5px);
+  }
+  
+  .product-list li a.active i {
+    color: #0d6efd;
+  }
+  
+  .product-card {
+    transition: all 0.3s;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card img {
+    max-height: 200px;
+    object-fit: contain;
+  }

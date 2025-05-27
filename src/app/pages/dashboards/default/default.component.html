@@ -1,0 +1,129 @@
+<app-loader></app-loader>
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-flex align-items-center justify-content-between">
+                <h4 class="mb-0 font-size-18">Dashboard</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <ng-container>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a>
+                            </li>
+                            <li class="breadcrumb-item active">Dashboard
+                            </li>
+                        </ng-container>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card overflow-hidden">
+                <div class="bg-primary-subtle">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="text-primary p-3">
+                                <h5 class="text-primary">Bienvenu !</h5>
+                               
+                            </div>
+                        </div>
+                        <div class="col-5 align-self-end">
+                            <img src="assets/images/profile-img.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="avatar-md profile-user-wid mb-4">
+                                <img src="assets/images/users/avatar-1.jpg" alt="" class="img-thumbnail rounded-circle">
+                            </div>
+                            <h5 class="font-size-15 text-truncate">nom de la base de donnée </h5>
+                           
+                        </div>
+
+                        <div class="col-sm-8">
+                            <div class="pt-4">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h5 class="font-size-15">125</h5>
+                                        <p class="text-muted mb-0">Projects</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5 class="font-size-15">$1245</h5>
+                                        <p class="text-muted mb-0">Revenue</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <a href="/profil" class="btn btn-primary btn-sm">Voir  votre profile <i class="mdi mdi-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Gains Mensuels</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="text-muted">Ce mois-ci</p>
+                            <h3>$34,252</h3>
+                            <p class="text-muted"><span class="text-success me-2"> 12% <i class="mdi mdi-arrow-up"></i>
+                                </span> Par rapport
+                                à la période précédente</p>
+            
+                            <div class="mt-4">
+                                <a href="" class="btn btn-primary btn-sm">Voir Plus <i class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <apx-chart dir="ltr" class="apex-charts" [series]="monthlyEarningChart.series" [chart]="monthlyEarningChart.chart" [legend]="monthlyEarningChart.legend" [colors]="monthlyEarningChart.colors" [labels]="monthlyEarningChart.labels" [stroke]="monthlyEarningChart.stroke" [plotOptions]="monthlyEarningChart.plotOptions">
+                            </apx-chart>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-0">Nous créons de la pensée numérique, graphique et dimensionnelle.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <div class="row">
+                @for (stat of statData; track $index) {
+                <div class="col-md-4">
+                    <app-stat [title]="stat.title" [value]="stat.value" [icon]="stat.icon"></app-stat>
+                </div>}
+            </div>
+            <!-- end row -->
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex flex-wrap">
+                        <h4 class="card-title mb-4">Emails Envoyés</h4>
+                        <div class="ms-auto">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);" [ngClass]="{'active': isActive === 'week'}" (click)="weeklyreport()">Semaine</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);" (click)="monthlyreport()" [ngClass]="{'active': isActive === 'month'}">Mois</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);" (click)="yearlyreport()" [ngClass]="{'active': isActive === 'year'}">Année</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <apx-chart dir="ltr" class="apex-charts" [chart]="emailSentBarChart.chart" [series]="emailSentBarChart.series" [legend]="emailSentBarChart.legend" [colors]="emailSentBarChart.colors" [fill]="emailSentBarChart.fill" [dataLabels]="emailSentBarChart.dataLabels" [xaxis]="emailSentBarChart.xaxis" [plotOptions]="emailSentBarChart.plotOptions">
+                    </apx-chart>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+   
+  

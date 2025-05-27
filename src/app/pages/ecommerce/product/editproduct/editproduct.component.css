@@ -1,0 +1,137 @@
+/* Ajoutez dans edit-product.component.css */
+.img-thumbnail {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.table-responsive {
+  min-height: 300px; /* Espace minimum même si vide */
+}
+
+.text-center {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+}
+/* Styles pour le modal d'édition */
+.product-edit-modal {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-edit-modal .modal-header {
+  border-radius: 10px 10px 0 0;
+  padding: 1.25rem 1.5rem;
+  border-bottom: none;
+}
+
+.product-edit-modal .modal-body {
+  padding: 2rem;
+}
+
+.product-edit-modal .image-upload-container {
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  transition: all 0.3s;
+  background-color: #f8f9fa;
+}
+
+.product-edit-modal .image-upload-container:hover {
+  border-color: #4a6cf7;
+  background-color: #f0f5ff;
+}
+
+.product-edit-modal .preview-image {
+  max-width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background-color: white;
+  border: 1px solid #eee;
+}
+
+.product-edit-modal .form-control {
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ced4da;
+  transition: all 0.3s;
+}
+
+.product-edit-modal .form-control:focus {
+  border-color: #4a6cf7;
+  box-shadow: 0 0 0 0.2rem rgba(74, 108, 247, 0.25);
+}
+
+.product-edit-modal .btn-outline-primary {
+  border-width: 2px;
+  font-weight: 500;
+}
+
+.product-edit-modal .modal-footer {
+  border-top: 1px solid #e9ecef;
+  padding: 1.25rem 1.5rem;
+}
+
+/* Animation d'entrée */
+.modal.fade .modal-dialog {
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translateY(0);
+  opacity: 1;
+}
+/* Styles pour le groupe de boutons */
+.btn-group-sm {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.btn-group-sm .btn {
+  padding: 0.25rem 0.5rem;
+  border-width: 1px;
+  transition: all 0.2s;
+}
+
+.btn-group-sm .btn-outline-primary {
+  border-color: #4a6cf7;
+  color: #4a6cf7;
+}
+
+.btn-group-sm .btn-outline-primary:hover {
+  background-color: #4a6cf7;
+  color: white;
+}
+
+.btn-group-sm .btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.btn-group-sm .btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Tooltip pour les titres */
+[title] {
+  position: relative;
+}
+
+[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+}

@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2>Suivi des livraisons en temps réel</h2>
+
+  <div id="map" style="height: 500px; width: 100%; margin-top: 20px;"></div>
+
+  <div class="mt-4">
+    <h5>Détails des commandes Confirmées :</h5>
+    <ul class="list-group">
+      <li *ngFor="let cmd of commandes" class="list-group-item">
+  <div>Commande #{{ cmd.id }}</div>
+<div>Livreur : {{ cmd.livraison?.livreur ? (cmd.livraison.livreur.nom + ' ' + cmd.livraison.livreur.prenom) : 'Non assigné' }}</div>
+<div>ID Livreur : {{ cmd.livraison?.livreur?.id }}</div>
+<div>
+  Position : 
+  <ng-container *ngIf="cmd.livraison?.livreur && positions[cmd.livraison.livreur.id]; else noPosition">
+    Lat {{ positions[cmd.livraison.livreur.id]?.latitude }} / 
+    Lng {{ positions[cmd.livraison.livreur.id]?.longitude }}
+  </ng-container>
+  <ng-template #noPosition>Position non disponible</ng-template>
+</div>
+
+</li>
+
+    </ul>
+  </div>
+  
+</div>

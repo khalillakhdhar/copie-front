@@ -1,0 +1,19 @@
+<div *ngIf="positionActuelle">
+  <google-map
+    height="500px"
+    width="100%"
+    [center]="positionActuelle"
+    [zoom]="zoom">
+    
+    <map-marker
+      [position]="positionActuelle"
+      [label]="'Livreur'"
+      [title]="'Position actuelle du livreur'">
+    </map-marker>
+    
+  </google-map>
+</div>
+
+<div *ngIf="!positionActuelle && !positionIndisponible">
+  <p>Chargement de la position du livreur...</p>
+</div>

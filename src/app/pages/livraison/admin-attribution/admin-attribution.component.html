@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Gestion des Livraisons - Affectation des Livreurs</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Commande ID</th>
+        <th>Client</th>
+        <th>Date</th>
+        <th>État</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.utilisateur?.prenom }} {{ order.utilisateur?.nom }}</td>
+        <td>{{ order.createdAt}}</td>
+        <td>{{ order.etatCommande }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="openAssignModal(order.id)">
+            Assigner
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal d’assignation -->
+  <div class="modal fade" tabindex="-1" id="assignModal">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Assigner un livreur</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="suppliers.length === 0">Aucun livreur disponible.</div>
+          <ul class="list-group">
+            <li *ngFor="let supplier of suppliers" class="list-group-item d-flex justify-content-between align-items-center">
+              {{ supplier.prenom }} {{ supplier.nom }} - {{ supplier.vehicule }}
+              <button class="btn btn-success btn-sm" (click)="assignLivreur(supplier.id)">
+                Assigner
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

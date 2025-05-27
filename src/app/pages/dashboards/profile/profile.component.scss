@@ -1,0 +1,15 @@
+.modal {
+    display: none; /* Masqué par défaut */
+    position: fixed;
+    z-index: 1050; /* Devant les autres éléments */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Pour faire défiler si nécessaire */
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+}
+
+.modal.show {
+    display: block; /* Affiche lorsque 'show' est ajouté */
+}
