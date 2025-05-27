@@ -10,7 +10,7 @@
             <div class="col-xl-6">
               <ngx-slick-carousel [config]="slideConfig">
                 <div ngxSlickItem *ngFor="let tab of tabs">
-                  <img [src]="'http://localhost:8080/api/files/' + tab.image" 
+                  <img [src]="'http://31.97.36.146:8080/api/files/' + tab.image" 
                   alt="{{ tab.image }}" 
                   class="img-fluid mx-auto d-block rounded product-image" 
                   (error)="onImageError($event)">

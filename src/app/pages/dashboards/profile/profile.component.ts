@@ -89,7 +89,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
         if (user.profile.photoUrl) {
           this.profileImage = user.profile.photoUrl;
-          this.imagePreview = `http://localhost:8080/api/files/${user.profile.photoUrl}`;
+          this.imagePreview = `http://31.97.36.146:8080/api/files/${user.profile.photoUrl}`;
         }
       }
     });
@@ -118,7 +118,7 @@ import { DomSanitizer } from '@angular/platform-browser';
       next: (res: any) => {
         if (res.success && res.filePath) {
           this.profileImage = res.filePath;
-          this.imagePreview = `http://localhost:8080/api/files/${res.filePath}`;
+          this.imagePreview = `http://31.97.36.146:8080/api/files/${res.filePath}`;
           this.toastr.success('Image uploadée avec succès');
         } else {
           this.toastr.error('Réponse invalide lors de l\'upload');

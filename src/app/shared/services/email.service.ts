@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class EmailService {
 
-  private apiUrl = 'http://localhost:8080/auth'; 
+  private apiUrl = 'http://31.97.36.146:8080/auth'; 
 
   constructor(private http: HttpClient) { }
 

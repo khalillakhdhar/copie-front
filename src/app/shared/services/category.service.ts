@@ -9,7 +9,7 @@ import { Product } from '../classes/entities/product';
 })
 export class CategoryService {
 
-  private apiUrl = 'http://localhost:8080/api/categories';
+  private apiUrl = 'http://31.97.36.146:8080/api/categories';
 
   constructor(private http: HttpClient) {}
 

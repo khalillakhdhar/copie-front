@@ -140,7 +140,7 @@ export class EditproductComponent implements OnInit {
   }
 
   getProductImageUrl(imagePath: string): string {
-    return `http://localhost:8080/api/files/${imagePath}`;
+    return `http://31.97.36.146:8080/api/files/${imagePath}`;
   }
 
   saveProduct(): void {

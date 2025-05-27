@@ -3,7 +3,7 @@
 <div class="profile-header">
   <div class="cover-photo"></div>
   <div class="profile-photo" *ngIf="user.profile?.photoUrl">
-    <img [src]="'http://localhost:8080/api/files/' + user.profile.photoUrl" 
+    <img [src]="'http://31.97.36.146:8080/api/files/' + user.profile.photoUrl" 
          alt="Photo de profil" 
          class="profile-img"
          onerror="this.src='assets/images/default-profile.png'">

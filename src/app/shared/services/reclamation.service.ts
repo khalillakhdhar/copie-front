@@ -7,7 +7,7 @@ import { Page } from '../classes/entities/page';
   providedIn: 'root'
 })
 export class ReclamationService {
- private apiUrl = 'http://localhost:8080/api/reclamations'; 
+ private apiUrl = 'http://31.97.36.146:8080/api/reclamations'; 
  constructor(private http: HttpClient) {}
   // Send a new reclamation
   sendReclamation(reclamation: Reclamation): Observable<Reclamation> {

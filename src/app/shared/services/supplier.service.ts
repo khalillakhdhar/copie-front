@@ -10,7 +10,7 @@ import { LivreurUpdate } from '../classes/entities/livreur-update';
   providedIn: 'root'
 })
 export class SupplierService {
-  private apiUrl = 'http://localhost:8080/api/livreurs';
+  private apiUrl = 'http://31.97.36.146:8080/api/livreurs';
 
   constructor(private http: HttpClient) {}
 

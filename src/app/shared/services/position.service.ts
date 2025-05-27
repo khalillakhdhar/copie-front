@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PositionService {
 
-  private apiUrl = 'http://localhost:8080/api/positions';
+  private apiUrl = 'http://31.97.36.146:8080/api/positions';
 
   constructor(private http: HttpClient) {}
 

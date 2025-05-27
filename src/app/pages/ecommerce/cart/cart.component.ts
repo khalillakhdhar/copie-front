@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 import { ToastrService } from 'ngx-toastr';
-const BASE_FILE_URL = 'http://localhost:8080/files/';
+const BASE_FILE_URL = 'http://31.97.36.146:8080/files/';
 
 @Component({
   selector: 'app-cart',

@@ -6,7 +6,7 @@ import { Facture } from '../classes/entities/facture';
   providedIn: 'root'
 })
 export class FactureService {
-   private apiUrl = 'http://localhost:8080/api/factures';
+   private apiUrl = 'http://31.97.36.146:8080/api/factures';
   constructor(private http: HttpClient) { }
 
   // Méthode pour générer une facture

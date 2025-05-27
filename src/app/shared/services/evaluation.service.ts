@@ -8,7 +8,7 @@ import { EvaluationResponseDTO } from '../classes/entities/EvaluationResponseDTO
   providedIn: 'root'
 })
 export class EvaluationService {
-private baseUrl = 'http://localhost:8080/api/evaluations';
+private baseUrl = 'http://31.97.36.146:8080/api/evaluations';
 
   constructor(private http: HttpClient) {}
 

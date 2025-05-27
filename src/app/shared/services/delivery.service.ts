@@ -7,7 +7,7 @@ import { Delivery } from '../classes/entities/delivery';
 })
 export class DeliveryService {
 
-  private baseUrl = 'http://localhost:8080/api/livraisons';
+  private baseUrl = 'http://31.97.36.146:8080/api/livraisons';
 
   constructor(private http: HttpClient) {}
 

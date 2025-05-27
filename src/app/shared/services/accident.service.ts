@@ -7,7 +7,7 @@ import { AccidentResponse } from '../classes/entities/accidentResponse';
   providedIn: 'root'
 })
 export class AccidentService {
-   private apiUrl = 'http://localhost:8080/api/accidents'; // URL de base API backend (à adapter)
+   private apiUrl = 'http://31.97.36.146:8080/api/accidents'; // URL de base API backend (à adapter)
 
   constructor(private http: HttpClient) { }
 

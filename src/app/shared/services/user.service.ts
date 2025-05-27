@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080/api/utilisateurs'; 
+  private apiUrl = 'http://31.97.36.146:8080/api/utilisateurs'; 
   constructor(private http: HttpClient) {}
   
    // pour le stovkage du token apres authentification

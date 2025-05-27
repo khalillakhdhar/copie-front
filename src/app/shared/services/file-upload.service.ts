@@ -7,7 +7,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class FileUploadService {
 
-  private apiUrl = 'http://localhost:8080/api/files';
+  private apiUrl = 'http://31.97.36.146:8080/api/files';
 
   constructor(private http: HttpClient) { }
   uploadImage(file: File, entityType: string, oldPath?: string) {

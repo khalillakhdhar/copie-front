@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/shared/classes/entities/cartItem';
-const BASE_FILE_URL = 'http://localhost:8080/api/files/';
+const BASE_FILE_URL = 'http://31.97.36.146:8080/api/files/';
 
 @Component({
   selector: 'app-productdetail',
@@ -92,7 +92,7 @@ addToCart() {
       : this.productDetail.image;
 
     //const imageUrl = BASE_FILE_URL + firstImage;
-    const imageUrl = `http://localhost:8080/api/files/${firstImage}`;
+    const imageUrl = `http://31.97.36.146:8080/api/files/${firstImage}`;
 
     this.cartService.addToCart({
       id: this.productDetail.id,
@@ -117,7 +117,7 @@ addToCart() {
         : this.productDetail.image;
   
       //const imageUrl = BASE_FILE_URL + firstImage;
-      const imageUrl = `http://localhost:8080/api/files/${firstImage}`;
+      const imageUrl = `http://31.97.36.146:8080/api/files/${firstImage}`;
   
     // Convertir le produit en item de panier
     const cartItem: CartItem = {

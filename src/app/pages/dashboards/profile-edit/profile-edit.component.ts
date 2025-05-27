@@ -116,7 +116,7 @@ export class ProfileEditComponent implements OnInit {
 }
 getCurrentImageUrl(): string {
   if (this.profileImage) {
-    return `http://localhost:8080/api/files/${this.profileImage}`;
+    return `http://31.97.36.146:8080/api/files/${this.profileImage}`;
   }
   return 'assets/images/default-profile.png'; // Chemin vers une image par défaut
 }

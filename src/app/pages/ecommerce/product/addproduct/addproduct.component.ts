@@ -97,7 +97,7 @@ uploadImage(file: File): void {
     next: (res: any) => {
       if (res.success && res.filePath) {
         this.product.image = res.filePath; // ← chemin relatif (ex: "products/image.jpg")
-        this.imagePreview = `http://localhost:8080/api/files/${res.filePath}`; //Met à jour la prévisualisation avec l’URL complète. (URL absolue à afficher)
+        this.imagePreview = `http://31.97.36.146:8080/api/files/${res.filePath}`; //Met à jour la prévisualisation avec l’URL complète. (URL absolue à afficher)
         this.toastr.success('Image uploadée avec succès');
       } else {
         this.toastr.error('Réponse invalide lors de l\'upload');

@@ -11,7 +11,7 @@ import { TypeOrder } from '../classes/enums/typeOrder.enum';
 })
 export class OrderService {
 
-  private apiUrl = 'http://localhost:8080/api/commandes';
+  private apiUrl = 'http://31.97.36.146:8080/api/commandes';
 
   constructor(private http: HttpClient) {}
   createOrder(commandeRequest: CommandeRequestDTO): Observable<Order> {

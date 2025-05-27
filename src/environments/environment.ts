@@ -15,7 +15,7 @@ export const environment = {
     messagingSenderId: "",
     appId: "",
     measurementId: "",
-    apiBaseUrl: 'http://localhost:8080/api'
+    apiBaseUrl: 'http://31.97.36.146:8080/api'
   }
 };
 

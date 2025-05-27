@@ -24,7 +24,7 @@ export class FileUploadComponent {
       this.uploadService.uploadImage(this.selectedFile, 'products').subscribe({
         next: (res: any) => {
           if (res.success && res.filePath) {
-            this.imageUrl = `http://localhost:8080/api/files/${res.filePath}`;
+            this.imageUrl = `http://31.97.36.146:8080/api/files/${res.filePath}`;
           }
         },
         error: (err) => console.error('Upload error', err)

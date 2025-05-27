@@ -9,7 +9,7 @@ import { Supplier } from '../classes/entities/supplier';
 })
 export class AdminDeliveryService {
 
-  private apiUrl = 'http://localhost:8080/api/admin/livraisons';
+  private apiUrl = 'http://31.97.36.146:8080/api/admin/livraisons';
 
   constructor(private http: HttpClient) {}
 
