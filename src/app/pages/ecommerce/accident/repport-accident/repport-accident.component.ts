@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccidentService } from 'src/app/shared/services/accident.service';
 import { Router } from '@angular/router';
 import { Severity } from 'src/app/shared/classes/enums/severity';
-import { AccidentRequest } from 'src/app/shared/classes/entities/AccidentRequest';
+
 import { AuthService } from '../../../../shared/services/auth.service';
 @Component({
   selector: 'app-repport-accident',
@@ -60,20 +60,20 @@ export class RepportAccidentComponent implements OnInit {
     }
     const storedUserId = localStorage.getItem('userId');
     const livreurId = storedUserId ? parseInt(storedUserId, 10) : null;
-  
+
   if (!livreurId) {
     this.messageError = "Impossible d'identifier le livreur. Veuillez vous reconnecter.";
     return;
   }
     this.messageError = '';
-    const accident: AccidentRequest = this.accidentForm.value;
+    const accident: any = this.accidentForm.value;
 
     this.accidentService.signalerAccident(accident,livreurId).subscribe({
 
       next: (res) => {
         console.log(livreurId);
         console.log(accident);
-  
+
         this.messageSuccess = 'Accident signalé avec succès !';
         this.accidentForm.reset();
         // Replacer la date par défaut et essayer géolocalisation encore

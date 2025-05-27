@@ -1,7 +1,7 @@
 import { Severity } from "../enums/severity";
 
 export interface AccidentRequest {
-  dateAccident: string;  
+  dateAccident: string;
   severity: Severity;
   latitude: number;
   longitude: number;
