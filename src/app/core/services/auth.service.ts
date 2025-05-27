@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { getFirebaseBackend } from '../../authUtils';
 import { User } from 'src/app/store/Authentication/auth.models';
 import { from, map } from 'rxjs';
-import { Email } from '../../../../../Starterkit/src/app/store/Email/email.model';
 
 
 @Injectable({ providedIn: 'root' })
